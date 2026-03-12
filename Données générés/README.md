@@ -1,1 +1,3 @@
 - turaco_density_1  (beta: 0.3516, center: 5.212)
+- turaco_density_center_Pd (center = 12.0)
+- turaco_density_center_Pt (center = 21.45)
