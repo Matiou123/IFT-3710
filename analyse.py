@@ -1,7 +1,9 @@
-import pandas as pd, matplotlib.pyplot as plt, numpy, re
+import pandas as pd, matplotlib.pyplot as plt, numpy, re, seaborn as sb
 from gflownet.utils.crystals.constants import ATOMIC_MASS
 
 chemin = "logs/crystalgfn/local/2026-03-06_18-29-54_865552/eval/samples/turaco_density_1.csv"
+chemin_Pt = "logs/crystalgfn/local/2026-03-12_13-25-39_176426/eval/samples/turaco_density_center_Pt.csv"
+chemin_Pd = "logs/crystalgfn/local/2026-03-12_14-45-08_709743/eval/samples/turaco_density_center_Pd.csv"
 
 
 DENSITY_CONVERSION = 10 / 6.022  # constant to convert g/molA3 to g/cm3
@@ -27,34 +29,47 @@ def density(total_mass, lattice):
 
 element_to_mass = {"Pt" : ATOMIC_MASS[78], "Pd": ATOMIC_MASS[46]}
 
-with open(chemin, "rb") as file:
-    a = pd.read_csv(file)
-    b = list(a["readable"])
+fig, axes = plt.subplots(1,3,figsize=(10,4))
+plt.suptitle("Distribution des différentes densités selon les molécules \n Selon différentes paramètres initiales du modèle")
+
+for k, c in enumerate((chemin, chemin_Pt, chemin_Pd)):
     
-    densité_éléments = {"Pt2": [], "Pt4" : [], "Pd2" : [], "Pd4" : []}
-    
-    for i in range(a.shape[0]):
-        regex_nombre = r"(\d+\.\d+)"
+    with open(c, "rb") as file:
+        a = pd.read_csv(file)
+        b = list(a["readable"])
         
-        lattices = list(map(float, re.findall(regex_nombre, b[i])))
+        densité_éléments = {"Pt2": [], "Pt4" : [], "Pd2" : [], "Pd4" : []}
         
-        regex_elements = r"([A-Z][a-z]?)(\d+)"
-        elements = re.findall(regex_elements, b[i])
-        
-        molecules = elements[0][0]+elements[0][1]
+        for i in range(a.shape[0]):
+            regex_nombre = r"(\d+\.\d+)"
+            
+            lattices = list(map(float, re.findall(regex_nombre, b[i])))
+            
+            regex_elements = r"([A-Z][a-z]?)(\d+)"
+            elements = re.findall(regex_elements, b[i])
+            
+            molecules = elements[0][0]+elements[0][1]
 
-        total_mass = element_to_mass[elements[0][0]] * int(elements[0][1])
-        
-        densité_éléments[molecules].append(density(total_mass, lattices))
+            total_mass = element_to_mass[elements[0][0]] * int(elements[0][1])
+            
+            densité_éléments[molecules].append(density(total_mass, lattices))
 
-labels = list(densité_éléments.keys())
-values = list(densité_éléments.values())
+        labels = list(densité_éléments.keys())
+        values = list(densité_éléments.values())
 
-# Imprime les moyennes pour vérifier le graphique
-#print(list(map(lambda x : sum(densité_éléments[x])/len(densité_éléments[x]), labels  )))
+        # Imprime les moyennes pour vérifier le graphique
+        #print(list(map(lambda x : sum(densité_éléments[x])/len(densité_éléments[x]), labels )))
 
-plt.boxplot(values, label=labels)
-plt.xticks([e for e in range(1, len(labels) + 1)], labels)
-plt.ylabel("Densité")
-plt.title("Distribution des différentes densités selon les molécules")
+        sb.violinplot(values, ax=axes[k])
+
+        axes[k].set_xticks([e for e in range(0, len(labels) )], labels)
+        axes[k].set_ylabel("Densité")
+        if c == chemin_Pd:
+            axes[k].set_title("Le centre est la densité de Pd (12.0)")
+        elif c == chemin_Pt:
+            axes[k].set_title("Le centre est la densité de Pt (21.45)")
+        else:
+            axes[k].set_title("beta: 0.3516, center: 5.212")
+            
+plt.tight_layout()
 plt.savefig("densités_turacos_corners.pdf")
