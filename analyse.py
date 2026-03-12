@@ -1,7 +1,7 @@
 import pandas as pd, matplotlib.pyplot as plt, numpy, re
 from gflownet.utils.crystals.constants import ATOMIC_MASS
 
-chemin = "logs/crystalgfn/local/2026-03-06_18-29-54_865552/eval/samples/gfn_samples.csv"
+chemin = "logs/crystalgfn/local/2026-03-06_18-29-54_865552/eval/samples/turaco_density_1.csv"
 
 
 DENSITY_CONVERSION = 10 / 6.022  # constant to convert g/molA3 to g/cm3
@@ -33,7 +33,7 @@ with open(chemin, "rb") as file:
     
     densité_éléments = {"Pt2": [], "Pt4" : [], "Pd2" : [], "Pd4" : []}
     
-    for i in range(5):
+    for i in range(a.shape[0]):
         regex_nombre = r"(\d+\.\d+)"
         
         lattices = list(map(float, re.findall(regex_nombre, b[i])))
