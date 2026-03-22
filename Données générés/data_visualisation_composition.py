@@ -1,8 +1,8 @@
 import pandas as pd 
 import matplotlib.pyplot as plt
 
-pd_centered_file = "turaco_density_center_Pd.csv"
-pt_centered_file = "turaco_density_center_Pt.csv"
+pd_centered_file = "density_Pd.csv"
+pt_centered_file = "density_Pt_1.csv"
 test_file = "turaco_density_1.csv"
 TYPES = ["Pt2", "Pt4", "Pd2", "Pd4"]
 
@@ -14,10 +14,10 @@ def get_compositions(file):
 # Shows horizontal bar plot of a distribution 
 def plot_distribution(dists, names, colors):
 	fig = plt.figure()
-	fig.canvas.manager.set_window_title("Distribution of molecule composition based on density trained")
+	fig.canvas.manager.set_window_title("Distribution of molecule composition based on density trained no title")
 
 	ax = fig.add_subplot()
-	ax.set_title("Distribution of molecule composition based on density trained")
+	#ax.set_title("Distribution de la composition des cristaux selon densité cible")
 	l = len(dists)
 
 	for i in range(4):
@@ -28,7 +28,6 @@ def plot_distribution(dists, names, colors):
 
 	ax.set_xlim(0, 1000)
 	ax.legend()
-	plt.show()
 	return
 	
 test_a = get_compositions(test_file)
@@ -36,6 +35,8 @@ pd_centered = get_compositions(pd_centered_file)
 pt_centered = get_compositions(pt_centered_file)
 
 plot_distribution([test_a, pd_centered, pt_centered], 
-				  ["Test", "Pd-trained", "Pt-trained"],
+				  ["Aléatoire", "Pd (12.00)", "Pt (21.45)"],
 				  ["xkcd:blue", "xkcd:light blue", "xkcd:salmon", "xkcd:red"])
+
+plt.show()
 
