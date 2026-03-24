@@ -8,3 +8,7 @@
 - density_moy (beta : -0.3516, center: 50.175)
 - density_Pd (beta : -0.3516, center: 12)
 - gfn_samples (L'expérience de turaco_density dans gflownet)
+
+## Expérience projet avec proxy density
+- turaco_density_projet_Pt (beta : -0.3516, center: 21.45)
+- test (Les jeu de données de test retenu pour l'entraînement)
