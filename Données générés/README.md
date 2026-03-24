@@ -11,4 +11,4 @@
 
 ## Expérience projet avec proxy density
 - turaco_density_projet_Pt (beta : -0.3516, center: 21.45)
-- test (Les jeu de données de test retenu pour l'entraînement)
+- test (Le jeu de données de test retenu pour l'entraînement)
