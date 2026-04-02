@@ -1,3 +1,6 @@
+## Densité projet
+- densité_centre=100_beta=0.01269_eval densité_centre=100_beta=0.01269_replay
+
 ## Turaco corners
 - turaco_density_1  (beta: 0.3516, center: 5.212)
 - turaco_density_center_Pd (center = 12.0)
