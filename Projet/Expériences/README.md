@@ -12,9 +12,9 @@ Après l'entraînement, un dossier du modèle devrait être créé et se trouver
 ```sh
 python eval.py rundir=gflownet/logs/crystalgfn/local/2026-04-07_18-17-05_985445/ n_samples=1000
 ```
-Un fichier `gfn_samples.csv` devrait être alors créé dans `gflownet/logs/crystalgfn/local/2026-04-07_18-17-05_985445/eval/samples` qui représente l'échantillonage du modèle.
+Un fichier `gfn_samples.csv` devrait être alors être créé dans `gflownet/logs/crystalgfn/local/2026-04-07_18-17-05_985445/eval/samples` qui représente l'échantillonage du modèle.
 
-Pour obtenir les graphiques et les statistiques (moyenne et écart-type) de l'échantillion, on peut utiliser le script [analyse_projet.py](https://github.com/Matiou123/IFT-3710/blob/main/Projet/analyse_projet.py). Dans ce script, il suffit juste de changer le chemin vers le fichier d'échantillonage et de changer le sur-titre pour qu'il soit approprié, donc ces deux variables
+Pour obtenir le graphique et les statistiques (moyenne et écart-type) de l'échantillion, on peut utiliser le script [analyse_projet.py](https://github.com/Matiou123/IFT-3710/blob/main/Projet/analyse_projet.py). Dans ce script, il suffit juste de changer le chemin vers le fichier d'échantillonage et de changer le sur-titre pour qu'il soit approprié, donc ces deux variables
 ```python
 # Chemin csv eval
 chemin = "logs/crystalgfn/local/2026-04-13_00-36-55_666578/eval/samples/gfn_samples.csv"
