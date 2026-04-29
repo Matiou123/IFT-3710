@@ -18,4 +18,4 @@ Tout ce qui est utile à l'analyse
 # Utiles
 - `Periodic Table of Elements.csv` est le tableau périodique utilisé dans `training_composition_visualisation.py`
 - `train.csv` est le jeu de données utilisé pour les expériences.
-- `statistiques_density.txt` contient la moyenne et l'écart-type de `train.csv`
+- `statistiques_density.txt` contient la moyenne et l'écart-type du jeu de données
