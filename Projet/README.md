@@ -17,4 +17,5 @@ Tout ce qui est utile à l'analyse
 - `densités_turacos_density.pdf` est le graphique des distributions obtenues en changeant le proxy pour une rbf centrée selon différent centre dans le fichier de configuration [turaco_density.yaml](https://github.com/alexhernandezgarcia/gflownet/blob/main/config/experiments/crystals/turaco_density.yaml).
 # Utiles
 - `Periodic Table of Elements.csv` est le tableau périodique utilisé dans `training_composition_visualisation.py`
-- `train.csv` est le jeu de données utilisé pour les expériences. 
+- `train.csv` est le jeu de données utilisé pour les expériences.
+- `statistiques_density.txt` contient la moyenne et l'écart-type de `train.csv`
