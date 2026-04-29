@@ -6,7 +6,7 @@ Contient les fichiers utilisés et créer pour le projet. Les instructions pour 
 - `training_composition_visualisation.py` calcule les atomes les plus fréquents dans les molécules du jeu d'entraînement
 - `data_visualisation_composition.py` crée le graphique `Distribution_of_molecule_composition_based_on_density_trained.png`
 # Données générées
-- `Alétoire.csv` est les données générées par un modèle gflownet non entraîné avec nos configurations
+- `Alétoire.csv` est les données générées par un modèle gflownet non entraîné avec nos configurations du type [Centre=50, Beta=0.0001269.yaml](https://github.com/Matiou123/IFT-3710/blob/main/Projet/Exp%C3%A9riences/Centre%3D50%2C%20Beta%3D0.0001269.yaml)
 - `density_Pd.csv` est l'échantillonage turaco density rbf avec `beta` : -0.3516, `center` : 12
 - `density_Pt_1.csv` est l'échantillonage turaco density rbf avec `beta` : -0.3516, `center`: 21.45
 - `density_Pt_2.csv` est l'échantillonage turaco density rbf avec `beta` : -1e-3, `center` : 21.45
