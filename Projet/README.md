@@ -1,7 +1,7 @@
 Tout ce qui est utile à l'analyse
 
 # Scripts
-- `données.py` créer le jeu de données d'entraînement. Il combine gull.csv de gflownet et eform_train.csv de Alex
+- `données.py` créer le jeu de données d'entraînement. Il combine [gull.csv](https://github.com/alexhernandezgarcia/gflownet/blob/main/data/crystals/gull.csv) de gflownet et `eform_train.csv` de Alex
 - `analyse_projet.py` prend un fichier `.csv` de cristaux généré par gflownet puis renvoit un graphique avec 3 sous-graphiques et calcul la densité moyenne et son écart-type
 - `training_composition_visualisation.py` calcule les atomes les plus fréquents dans les molécules du jeu d'entraînement
 - `data_visualisation_composition.py` crée le graphique `Distribution_of_molecule_composition_based_on_density_trained.png`
