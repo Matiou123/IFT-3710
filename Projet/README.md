@@ -13,3 +13,4 @@ Tout ce qui est utile à l'analyse
 
 # Utiles
 - `Periodic Table of Elements.csv` est le tableau périodique utilisé dans `training_composition_visualisation.py`
+- `train.csv` est le jeu d'entraînement utilisé pour les expériences
