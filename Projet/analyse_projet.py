@@ -1,31 +1,32 @@
 import pandas as pd, matplotlib.pyplot as plt, re
 
 # Chemin csv eval
-chemin = "logs/crystalgfn/local/2026-04-01_14-31-31_453580/eval/samples/gfn_samples.csv"
-regex = r"([A-Z][a-z]*)(\d*)" # Les atomes
-d = dict() # Fréquence des atomes dans l'échantillon
-d2 = dict() # Nombre total d'atomes dans l'échantillion
+chemin = "logs/crystalgfn/local/2026-04-13_00-36-55_666578/eval/samples/gfn_samples.csv"
+titre = "testing.pdf" # Sur-titre du graphique
+regex = r"([A-Z][a-z]*)(\d*)" # Le premier groupe sont les atomes et le second sont leur nombre total
+fréquences = dict() # Fréquence des atomes dans l'échantillon 
+nombre_total_atomes = dict() # Nombre total d'atomes dans l'échantillion
 df = pd.read_csv(chemin)
 
 
+# Calcule les atomes dans les cristaux, leur fréquence dans les et leur nombre total
 for i in range(df.shape[0]):
     élément = df['readable'][i].split(';')[2]
-    #atomes = re.findall(regex, élément)
     nombre_atomes = re.findall(regex, élément)
     
     for atome, nombre in nombre_atomes:
         n = int(nombre) if nombre != "" else 1
         
-        if atome not in d:
-            d[atome] = 1
-            d2[atome] = n
+        if atome not in fréquences:
+            fréquences[atome] = 1
+            nombre_total_atomes[atome] = n 
         else:
-            d[atome] += 1
-            d2[atome] += n
+            fréquences[atome] += 1
+            nombre_total_atomes[atome] += n
 
 def plot1(chemin_sauv:str):
     plt.figure()
-    pd.Series(d).plot(kind='barh')
+    pd.Series(fréquences).plot(kind='barh')
     plt.title("La fréquence des atomes dans les éléments générés")
     #plt.show()
     plt.savefig(chemin_sauv)
@@ -33,59 +34,35 @@ def plot1(chemin_sauv:str):
 
 def plot2(chemin_sauv:str):
     plt.figure()
-    pd.Series(d2).plot(kind='barh')
+    pd.Series(nombre_total_atomes).plot(kind='barh')
     plt.title("Le nombre total des atomes qui ont été générés")
     #plt.show()
     plt.savefig(chemin_sauv)
 
 
-DENSITY_CONVERSION = 10 / 6.022  # constant to convert g/molA3 to g/cm3
-from gflownet.utils.crystals.constants import ATOMIC_MASS, ELEMENT_NAMES
-ELEMENT_NAMES_TO_NUMBER = {v : k for k, v in ELEMENT_NAMES.items()}
+densité = df['energies'].dropna().astype(float)
+
 import numpy as np
-
-
-regex_lattices = r'\d+\.\d+'
-regex_elements = r"([A-Z][a-z]?)(\d+)"
-densité = []
-
-for i in range(df.shape[0]):
-    t = df["readable"][i].split(';')
-
-    lattices = t[5]
-    a, b, c, cos_alpha, cos_beta, cos_gamma = tuple(map(float,(re.findall(regex_lattices, lattices))))
-    cos_alpha, cos_beta, cos_gamma = np.cos(np.deg2rad(cos_alpha)), np.cos(np.deg2rad(cos_beta)),  np.cos(np.deg2rad(cos_gamma))
-    
-    élément = df['readable'][i].split(';')[2]
-    atomes = re.findall(regex_elements, élément)
-    masse_total = 0
-    for atom in atomes:
-        masse_atom = ATOMIC_MASS[ELEMENT_NAMES_TO_NUMBER[atom[0]]]
-        masse_total += masse_atom * float(atom[1])
-        
-    arg_racine = (1 
-                - cos_alpha**2 - cos_beta**2 - cos_gamma**2 
-                + 2 * cos_alpha * cos_beta * cos_gamma)
-
-
-    volume = (a * b * c) * np.sqrt(arg_racine)
-
-
-    dens = (masse_total / volume) * DENSITY_CONVERSION
-
-    densité.append(dens)
-    
-import seaborn as sb, pandas as pd
-
+ 
 array_densité = np.array(densité)
 print("Stat densité")
 print(f"Moyenne : {array_densité.mean()} Écart-type :  {array_densité.std()}")
 
+    
+import seaborn as sb
 
-plot1("Distribution des éléments centre=100, beta=0.01269.pdf")
-plot2("Nombre total des atomes centre=100, beta=0.01269.pdf")
+fig, axes = plt.subplots(1, 3, figsize=(15, 5))
+plt.suptitle("Uniforme")
 
-plt.figure()
-sb.histplot(pd.DataFrame(densité), kde=True)
-plt.title("Distribution de la densité centre: 100, beta: 0.01269")
-plt.savefig("Distribution densité centre: 100, beta: 0.01269.pdf")
+pd.Series(fréquences).plot(kind='barh', ax=axes[0])
+axes[0].set_title("La fréquence des atomes dans les éléments générés")
+
+pd.Series(nombre_total_atomes).plot(kind='barh', ax=axes[1], color= "blue")
+axes[1].set_title("Le nombre total des atomes qui ont été générés")
+
+sb.histplot(pd.Series(densité),color="green" ,kde=True, bins=30, ax=axes[2], legend=False)
+axes[2].set_xlabel("Densité")
+axes[2].set_title("Distribution de la densité")
+
+plt.tight_layout()
+plt.savefig(titre)
