@@ -3,6 +3,7 @@ import pandas as pd, matplotlib.pyplot as plt, re
 # Chemin csv eval
 chemin = "logs/crystalgfn/local/2026-04-13_00-36-55_666578/eval/samples/gfn_samples.csv"
 titre = "testing.pdf" # Sur-titre du graphique
+
 regex = r"([A-Z][a-z]*)(\d*)" # Le premier groupe sont les atomes et le second sont leur nombre total
 fréquences = dict() # Fréquence des atomes dans l'échantillon 
 nombre_total_atomes = dict() # Nombre total d'atomes dans l'échantillion
