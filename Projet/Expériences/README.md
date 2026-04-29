@@ -8,7 +8,7 @@ Il suffit de suivre les instructions de [gflownet](https://github.com/alexhernan
 ```sh
 python train.py +experiments=/crystals/config.yaml
 ``` 
-Après l'entraînement, un dossier du modèle devrait être créé qui devrait se trouver dans `gflownet/logs/crystalgfn/local/`. Le nom du dossier devrait être un type  *timestamp*, par exemple `/2026-04-07_18-17-05_985445`. Il faut utiliser ce dossier pour l'échantillonage. Il faut passer cette commande à la racine de `glownet` pour échantilloner
+Après l'entraînement, un dossier du modèle devrait être créé et se trouver dans `gflownet/logs/crystalgfn/local/`. Le nom du dossier devrait être un type  *timestamp*, par exemple `/2026-04-07_18-17-05_985445`. Il faut utiliser ce dossier pour l'échantillonage. Il faut passer cette commande à la racine de `gflownet` pour échantilloner
 ```sh
 python eval.py rundir=gflownet/logs/crystalgfn/local/2026-04-07_18-17-05_985445/ n_samples=1000
 ```
