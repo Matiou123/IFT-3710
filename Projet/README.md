@@ -1,4 +1,4 @@
-Tout ce qui est utile à l'analyse
+Contient les fichiers utilisés et créer pour le projet. Les instructions pour rouler les expériences sont dans le dossier [Expériences](https://github.com/Matiou123/IFT-3710/tree/main/Projet/Exp%C3%A9riences) 
 
 # Scripts
 - `données.py` créer le jeu de données d'entraînement. Il combine [gull.csv](https://github.com/alexhernandezgarcia/gflownet/blob/main/data/crystals/gull.csv) de `gflownet` et `eform_train.csv` de Alex
