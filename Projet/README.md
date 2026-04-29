@@ -19,3 +19,4 @@ Contient les fichiers utilisés et créer pour le projet. Les instructions pour 
 - `Periodic Table of Elements.csv` est le tableau périodique utilisé dans `training_composition_visualisation.py`
 - `train.csv` est le jeu de données retenu par `glownet` dans les expériences.
 - `statistiques_density.txt` contient la moyenne et l'écart-type du jeu de données
+- `turaco_density_projet_Pt.yaml` est le fichier de configuration de turaco density rbf avec `beta` : -0.3516, `center`: 21.45 
