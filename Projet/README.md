@@ -9,8 +9,6 @@ Tout ce qui est utile à l'analyse
 # Graphiques
 - `Distribution_of_molecule_composition_based_on_density_trained.png` est la distribution des cristaux générés par nos modèles avec la comparaison d'une distribution uniforme.
 - `Alétoire.pdf` est le graphique du modèle gflownet non entraîné
-# Configurations
-
 # Utiles
 - `Periodic Table of Elements.csv` est le tableau périodique utilisé dans `training_composition_visualisation.py`
 - `train.csv` est le jeu d'entraînement utilisé pour les expériences
